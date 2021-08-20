@@ -1,0 +1,158 @@
+/*
+@media [device] media querlies list (списко медиа запросов)
+<селектор #1> {}
+....
+<селектор #N> {}
+devices:
+  - screen (все устройства с цветным экраном)
+  - speach ( синтезаторы речи)
+  - print (принтеры)
+  - all (все перечисленные)
+
+
+  media querlies list:
+    -(width:100px)- ширина экрана
+    -(height:100px) - высота экрана
+
+    - (min-width:200px) -если ширина >=200px
+    - (max-width:200px) -если ширина <=1000px
+    - (min-height
+    - max-height
+    - aspect-ratio(17/9) - соотношение сторон
+    - orientation
+
+    // если ширина экрана от300 до 900, или высота не больше 1000
+    @media min-width(300px) and max-width(900px) or max-height(1000px)
+
+
+
+*/
+/*
+0-500px
+-
+-
+-
+500-1024px
+--
+-
+>1024px
+---*/
+.d1, .d2, .d3 {
+height: 100px;
+padding: 16px;
+font-size: 24px;  
+}
+@media screen and (max-width:500px) {
+  .d3, .d2, .d1 {
+    background: red;
+  
+}
+}
+@media all and (min-width: 501px) and (max-width: 1024px){
+  .container{
+    display: grid;
+    grid-template: 
+    "d1 d2"
+    "d3 d3";
+    grid-template-columns: 0.6fr 1.4fr;
+    grid-template-rows: aut0 1.3fr;
+  }
+  .d1 {
+    grid-area: d1;
+    background: blue;
+  }  
+  .d2 {
+    grid-area: d2;
+    background: rgba(186, 86, 94, 1);
+  }  
+  .d3 {
+    grid-area: d3;
+    background:darkmagenta;
+  }  
+}
+@media screen and (min-width:1025px){
+  .container{
+    display: flex;
+    flex-direction: row-reverse;
+  }
+  .d1, .d2, .d3 {
+    flex: 1;
+    background: darkturquoise;
+  }
+}
+@media print {
+  .container{
+    border: 2px solid blue;
+  }
+}
+
+/*
+
+единицы измерения:
+px
+% - берется от размера родителя
+
+см -сантиметры
+мм- миллиметры
+in - дюймы (2,54 см)
+pt -поинт(1/72 от 1in)
+pc - пика (12pt)
+
+em - размер относительно шрифта родительского блока
+rem - размер относительно размера шрифта корневого блока (html)
+ch - ширина символа "0"
+ex -ширина символа "х" в нижнем регистре
+vw - один % от ширины области просмотра
+vh- 1 % от высоты области просмотра
+vmin - 1% от наименьшей стороны области просмотра
+vmax - 1 % от наибольшей стороны области просмотра
+
+
+
+Задание цветов:
+1) название English
+2) hex-kod цвета (#fa45b5)
+red = fa (250)
+green = 45(69)
+blue = b5(181)
+#fb5 = #ffbb55
+3) через псевдофунции
+rgb(100,55,77)
+rbga(200,67,89, 0.6) - последнее прозрачность
+
+
+*/
+/*анимация*/
+@keyframes fantasy {
+  0%{
+    border-radius: 50%;
+    color: crimson;
+    position: absolute;
+  }
+  10%{
+    border-radius: 30%;
+  }
+  20%{
+    right: 20px;
+    top: 100px;
+    border-radius: 0;
+  }
+  50%{
+    transform: rotate(150deg) scale(1.5);
+  }
+  100%{
+    bottom: 0;
+    left: 0;
+    border-radius: 50%;
+  }
+
+}
+.d1{
+  animation-name: fantasy;
+  animation-duration: 10s;
+  animation-delay: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: cubic-bezier();
+  transition: all 2s;
+
+}
